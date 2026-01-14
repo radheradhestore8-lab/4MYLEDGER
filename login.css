@@ -1,0 +1,100 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* FULL BACKGROUND */
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(120, 40, 10, 0.35), transparent 60%),
+    linear-gradient(135deg, #0a0504, #1a0b08, #050202);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+/* LOGIN CONTAINER */
+.login-wrapper {
+  text-align: center;
+  padding: 40px 30px;
+  max-width: 360px;
+  width: 100%;
+}
+
+/* GANESH CIRCLE */
+.ganesh-frame {
+  width: 190px;
+  height: 190px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    circle,
+    rgba(255, 215, 150, 0.18),
+    rgba(0, 0, 0, 0.95)
+  );
+  border: 2px solid rgba(255, 200, 120, 0.6);
+  box-shadow:
+    0 0 30px rgba(255, 190, 110, 0.45),
+    inset 0 0 15px rgba(255, 215, 150, 0.25);
+}
+
+.ganesh-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+h1 {
+  margin-top: 10px;
+  font-size: 28px;
+  color: #ffd8a8;
+  text-shadow: 0 0 10px rgba(255, 200, 120, 0.3);
+}
+
+.subtitle {
+  margin-bottom: 25px;
+  font-size: 14px;
+  color: #d6b08c;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 15px;
+}
+
+input::placeholder {
+  color: #c9b3a0;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #d88a42, #a14b1e);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+}
+
+button:hover {
+  background: linear-gradient(135deg, #e39b55, #b15524);
+}

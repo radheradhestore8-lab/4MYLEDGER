@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Radhe Radhe Ledger</title>
+  <link rel="stylesheet" href="ledger.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <div class="animated-bg"></div>
+  <div class="bg-overlay"></div>
+  
+  <!-- APP HEADER -->
+  <div class="app-header">
+    <div class="header-title">Radhe Radhe Ledger</div>
+    <button id="logoutBtn">Logout</button>
+    <button id="openBinBtn">♻️ Recycle Bin</button>
+  </div>
+
+  <!-- LEDGER PAGE -->
+  <div id="ledgerPage" class="page">
+    <h1 style="text-align:center;">📒 Radhe Radhe Ledger</h1>
+
+    <!-- DATE RANGE FILTER -->
+    <div id="dateFilter" style="text-align:center; margin-bottom:10px;">
+      <label>From: </label>
+      <input type="date" id="fromDate">
+      <label>To: </label>
+      <input type="date" id="toDate">
+      <button id="filterTotalsBtn">Filter Totals</button>
+      <button id="clearFilterBtn">Clear</button>
+    </div>
+
+    <div id="ticker" class="ticker"></div>
+
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <input type="text" id="searchBar" placeholder="🔍 Search customer..." />
+
+        <div style="margin-top:10px;">
+          <label for="pendingDays">Show pending (days): </label>
+          <input type="number" id="pendingDays" min="1" placeholder="e.g. 30" />
+          <button id="filterPendingBtn">Filter</button>
+        </div>
+
+        <ul id="customerList"></ul>
+
+        <input type="text" id="newCustomer" placeholder="New customer name" />
+        <input type="text" id="newPhone" placeholder="Phone number" />
+        <button id="addCustomerBtn">Add Customer</button>
+      </div>
+
+      <!-- Main Section -->
+      <div class="main">
+        <h2 id="customerTitle"></h2>
+
+        <h4>📞 Phone Numbers</h4>
+        <ul id="phoneList"></ul>
+        <input type="text" id="newPhoneInput" placeholder="Add new phone number" />
+        <button id="addPhoneBtn">Add Phone</button>
+        <button id="editPhoneBtn">Edit Phone</button>
+
+        <hr style="margin:15px 0;">
+
+        <input type="number" id="amountInput" placeholder="Enter amount" />
+        <input type="date" id="dateInput" />
+        <button id="creditBtn">उधार</button>
+        <button id="debitBtn">जमा</button>
+        <button id="deleteCustomerBtn" class="danger">Delete Customer</button>
+        <button id="generatePDFBtn">📄 Generate PDF</button>
+        <button id="whatsappReminderBtn">📱 Send WhatsApp Reminder</button>
+
+    <table id="transactionTable">
+        <thead>
+            <tr>
+                <th>उधार Date</th>
+                <th>उधार</th>
+                <th>जमा Date</th>
+                <th>जमा</th>
+                <th>Running Balance</th>
+            </tr>
+        </thead>
+    
+        <tbody>
+            <!-- rows will be injected by ledger.js -->
+        </tbody>
+    </table>
+    
+    <!-- RECYCLE BIN MODAL -->
+    <div id="recycleBinModal" class="modal">
+        <div class="modal-content">
+    
+            <!-- HEADER -->
+            <div class="recycle-bin-header">
+                <h2>♻️ Recycle Bin</h2>
+    
+                <div class="bin-actions">
+                    <button class="clear-bin-btn" onclick="clearRecycleBin()">Clear Bin</button>
+                    <span class="close-bin" onclick="closeBin()">✕</span>
+                </div>
+            </div>
+    
+            <!-- FILTERS -->
+            <input type="text" id="binSearchInput" placeholder="Search customer name">
+            <input type="date" id="binDateInput">
+    
+            <hr>
+    
+            <!-- DELETED CUSTOMERS -->
+            <h3 class="bin-heading">Deleted Customers</h3>
+            <ul id="binCustomerList"></ul>
+    
+            <hr>
+    
+            <!-- DELETED TRANSACTIONS -->
+            <h3 class="bin-heading">Deleted Transactions</h3>
+            <ul id="binTransList"></ul>
+    
+        </div>
+    </div>
+
+
+
+
+        <div id="summaryDiv"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="ledger.js"></script>
+  <script src="bin.js"></script>
+</body>
+</html>

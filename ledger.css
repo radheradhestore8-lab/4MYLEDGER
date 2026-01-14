@@ -1,0 +1,497 @@
+/* ------------------------ GLOBAL ------------------------ */
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.82),
+      rgba(0, 0, 0, 0.88)
+    ),
+    url("feather-bg.jpg") center / cover no-repeat fixed;
+}
+
+
+
+/* ------------------------ HEADER ------------------------ */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1e1e1e;
+  color: #ffd28a;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: center; /* center header-title */
+  align-items: center;
+  gap: 20px; /* space between title and button */
+}
+
+.app-header .header-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.app-header button {
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+
+/* ------------------------ TICKER ------------------------ */
+.ticker {
+  background: #007bff;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+}
+
+/* ------------------------ LAYOUT ------------------------ */
+.container {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+}
+
+/* ------------------------ SIDEBAR ------------------------ */
+.sidebar {
+  width: 25%;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.sidebar input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+#customerList {
+  list-style: none;
+  padding: 0;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+#customerList li {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+#customerList li.active {
+  background: #007bff;
+  color: white;
+}
+
+/* ------------------------ MAIN ------------------------ */
+.main {
+  width: 75%;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.entry-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.entry-row input {
+  padding: 8px;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #007bff;
+  color: white;
+  margin: 2px;
+}
+
+button.danger {
+  background: #e74c3c;
+}
+
+/* ------------------------ TABLE ------------------------ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: #007bff;
+  color: white;
+}
+
+.credit-col {
+  color: green;
+  font-weight: bold;
+}
+
+.debit-col {
+  color: blue;
+  font-weight: bold;
+}
+
+.balance-pos {
+  color: green;
+}
+
+.balance-neg {
+  color: red;
+}
+
+/* ------------------------ PHONE LIST ------------------------ */
+#phoneList li {
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#phoneList li button {
+  padding: 2px 6px;
+  font-size: 12px;
+  background: #e74c3c;
+  border-radius: 4px;
+}
+
+/* ------------------------ MODAL ------------------------ */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-content h2, .modal-content h3 {
+  margin-top: 0;
+}
+
+.modal-content button {
+  margin: 3px 3px 3px 0;
+}
+
+/* ------------------------ RECYCLE BIN LIST ------------------------ */
+#binCustomerList li, #binTransList li {
+  padding: 6px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#binCustomerList li button, #binTransList li button {
+  margin-left: 5px;
+  padding: 3px 6px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#binCustomerList li button:nth-child(2), #binTransList li button:nth-child(2) {
+  background: #e74c3c;
+  color: white;
+}
+
+#binCustomerList li button:nth-child(1), #binTransList li button:nth-child(1) {
+  background: #2ecc71;
+  color: white;
+}
+
+/* ------------------------ MOBILE ------------------------ */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .sidebar, .main {
+    width: 100%;
+  }
+}
+
+/* BUTTONS */
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #007bff;
+  color: white;
+}
+
+/* Danger button for delete customer */
+button.danger {
+  background: #e74c3c;
+}
+
+/* Credit & Debit delete buttons */
+.delete-credit {
+  background-color: #e74c3c; /* red */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.delete-debit {
+  background-color: #3498db; /* blue */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+/* Main background panels (NO BLUR) */
+.app,
+.main,
+.container,
+.ledger-container {
+  background: #0b0b0b;
+}
+
+
+/* ===== FORCE TEXT VISIBILITY (LEDGER ONLY) ===== */
+
+h1, h2, h3, h4, h5 {
+  color: rgba(255, 230, 200, 0.95) !important;
+}
+
+label, th {
+  color: rgba(255, 220, 190, 0.9) !important;
+}
+
+input, select {
+  color: #f5e6d3;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid #333;
+}
+
+input::placeholder {
+  color: rgba(255, 220, 190, 0.45);
+}
+
+/* ===== HARD RESET FOR FADED CONTENT ===== */
+.app,
+.main,
+.container,
+.ledger-container,
+.customer-list,
+.recycle-bin,
+.table-container,
+.modal-content {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+#customerList,
+#customerList li {
+  background-color: #0b0b0b !important;
+  color: #ffffff !important;
+}
+
+#binCustomerList,
+#binCustomerList li,
+#binTransList,
+#binTransList li {
+  background-color: #0b0b0b !important;
+  color: #ffffff !important;
+}
+
+/* ===== FIX TEXT VISIBILITY ===== */
+
+/* Headings */
+h1, h2, h3, h4 {
+  color: #ffe6c7;
+  opacity: 1;
+}
+
+/* Labels like "Show pending days" */
+label {
+  color: #ffffff;
+  opacity: 1;
+}
+
+/* Customer list */
+#customerList li {
+  color: #ffffff;
+  background: transparent;
+}
+
+/* Defaulters (JS sets red bg) */
+#customerList li[style*="background: red"] {
+  background: red !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+/* Recycle bin headings */
+.modal-content h2,
+.modal-content h3 {
+  color: #ffd9a0;
+  opacity: 1;
+}
+
+/* Recycle bin lists */
+#binCustomerList li,
+#binTransList li {
+  color: #ffffff;
+  background: transparent;
+}
+
+/* ===== LEDGER CONTENT TEXT COLOR FIX ===== */
+
+/* Table text (Udhar / Jama dates & amounts) */
+#transactionTable th,
+#transactionTable td {
+  color: #ffffff !important;
+}
+
+/* Credit & Debit amounts (override earlier green/blue fade) */
+.credit-col {
+  color: #2ecc71 !important; /* green */
+  font-weight: bold;
+}
+
+.debit-col {
+  color: #3498db !important; /* blue */
+  font-weight: bold;
+}
+
+/* Running balance */
+.balance-pos {
+  color: #2ecc71 !important;
+}
+
+.balance-neg {
+  color: #e74c3c !important;
+}
+
+/* Customer summary (Udhar / Jama / Shesh / Pending days) */
+#summaryDiv,
+#summaryDiv div,
+#summaryDiv span {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* Pending days highlight (JS applies red via inline style) */
+#summaryDiv div[style*="red"] {
+  color: #ff4d4d !important;
+  font-weight: bold;
+}
+
+/* ===== SIDEBAR: Show Pending Days ===== */
+.sidebar label {
+  color: #000000 !important;   /* BLACK */
+  font-weight: bold;
+  opacity: 1 !important;
+}
+
+/* ===== RECYCLE BIN : HEADINGS (BLACK) ===== */
+.modal-content h2,
+.modal-content h3 {
+  color: #000000 !important;
+  font-weight: 800;
+  opacity: 1 !important;
+}
+
+/* ===== RECYCLE BIN : LIST ITEMS (WHITE) ===== */
+#binCustomerList li,
+#binTransList li {
+  color: #ffffff !important;
+  font-weight: 500;
+  opacity: 1 !important;
+}
+
+/* ===== RECYCLE BIN HEADER ===== */
+.recycle-bin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* Right-side actions */
+.bin-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Close button */
+.close-bin {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #000;
+}
+
+.close-bin:hover {
+  color: red;
+}
+
+/* Clear bin button */
+.clear-bin-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.clear-bin-btn:hover {
+  background: #b30000;
+}
+
+/* ===== PHONE NUMBERS COLOR ===== */
+#phoneList li {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  font-weight: 500;
+}
