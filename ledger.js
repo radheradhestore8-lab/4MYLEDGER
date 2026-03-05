@@ -1,6 +1,6 @@
 // ------------------------ GLOBAL ------------------------
 const BIN_ID = "69078e42ae596e708f3ff158";
-const API_KEY = "$2a$10$q58UzWjCwnMmGePFsUX9wevvwd4NO6NqgC3uOsm94klzH/AEP4Ade";
+const API_KEY = "$2a$10$v04xjDK5AzHosL83kt7ACOHqJobD5Y0j44s4Q95b.YT/D0Kw9Cny6";
 const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
 let ledger = {};
@@ -496,6 +496,7 @@ function openWhatsAppDirect(url) {
   a.click();
   document.body.removeChild(a);
 }
+
 
 
 
