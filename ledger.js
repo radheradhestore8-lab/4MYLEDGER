@@ -50,39 +50,29 @@ logoutBtn.onclick = () => {
 
 // ------------------------ JSONBIN ------------------------
 async function loadLedgerFromCloud() {
-  const res = await fetch(`${JSONBIN_URL}/latest`, {
-    headers: { "X-Master-Key": API_KEY }
-  });
-  const data = await res.json();
-  ledger = data.record || {};
-  if (!ledger.__BIN__) ledger.__BIN__ = { customers: [], transactions: [] };
-  renderCustomers();
-  updateTicker();
-}
+  try {
+    const res = await fetch(`${JSONBIN_URL}/latest`, {
+      headers: { "X-Master-Key": API_KEY }
+    });
 
-async function saveLedgerToCloud() {
+    const data = await res.json();
 
-  // get latest cloud data first
-  const latestRes = await fetch(`${JSONBIN_URL}/latest`, {
-    headers: { "X-Master-Key": API_KEY }
-  });
+    if (data && data.record) {
+      ledger = data.record;
+    } else {
+      ledger = {};
+    }
 
-  const latestData = await latestRes.json();
-  let cloudLedger = latestData.record || {};
+    if (!ledger.__BIN__) {
+      ledger.__BIN__ = { customers: [], transactions: [] };
+    }
 
-  // update cloud ledger
-  cloudLedger = ledger;
+    renderCustomers();
+    updateTicker();
 
-  // upload safely
-  await fetch(JSONBIN_URL, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Master-Key": API_KEY
-    },
-    body: JSON.stringify(cloudLedger)
-  });
-
+  } catch (err) {
+    console.error("Cloud load failed:", err);
+  }
 }
 // ------------------------ CUSTOMER ------------------------
 addCustomerBtn.onclick = async () => {
@@ -506,5 +496,6 @@ function openWhatsAppDirect(url) {
   a.click();
   document.body.removeChild(a);
 }
+
 
 
