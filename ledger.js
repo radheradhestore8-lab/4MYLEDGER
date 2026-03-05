@@ -61,16 +61,29 @@ async function loadLedgerFromCloud() {
 }
 
 async function saveLedgerToCloud() {
+
+  // get latest cloud data first
+  const latestRes = await fetch(`${JSONBIN_URL}/latest`, {
+    headers: { "X-Master-Key": API_KEY }
+  });
+
+  const latestData = await latestRes.json();
+  let cloudLedger = latestData.record || {};
+
+  // update cloud ledger
+  cloudLedger = ledger;
+
+  // upload safely
   await fetch(JSONBIN_URL, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
       "X-Master-Key": API_KEY
     },
-    body: JSON.stringify(ledger)
+    body: JSON.stringify(cloudLedger)
   });
-}
 
+}
 // ------------------------ CUSTOMER ------------------------
 addCustomerBtn.onclick = async () => {
   const name = newCustomer.value.trim();
@@ -493,4 +506,5 @@ function openWhatsAppDirect(url) {
   a.click();
   document.body.removeChild(a);
 }
+
 
