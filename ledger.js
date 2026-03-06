@@ -74,6 +74,20 @@ async function loadLedgerFromCloud() {
     console.error("Cloud load failed:", err);
   }
 }
+async function saveLedgerToCloud() {
+  try {
+    await fetch(JSONBIN_URL, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Master-Key": API_KEY
+      },
+      body: JSON.stringify(ledger)
+    });
+  } catch (err) {
+    console.error("Cloud save failed:", err);
+  }
+}
 // ------------------------ CUSTOMER ------------------------
 addCustomerBtn.onclick = async () => {
   const name = newCustomer.value.trim();
@@ -496,6 +510,7 @@ function openWhatsAppDirect(url) {
   a.click();
   document.body.removeChild(a);
 }
+
 
 
 
